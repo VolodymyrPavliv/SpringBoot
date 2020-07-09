@@ -1,0 +1,6 @@
+<div th:fragment="logout" xmlns:th="http://www.thymeleaf.org">
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+    <span><a href="/user">Users</a></span>
+</div>

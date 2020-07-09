@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+<header >
+    <div th:insert="blocks/header :: header"></div>
+    <div th:insert="blocks/logout :: logout"></div>
+</header>
+<div class="container mt-5">
+    <div th:each="p : ${post}" class="alert alert-info mt-2">
+        <h3 th:text="${p.title}"></h3>
+        <div th:if="${p.filename != null}">
+            <img th:src="'/img/'+${p.filename}">
+        </div>
+        <p th:text="${p.full_text}"></p>
+        <p><b>Views: </b> <span th:text="${p.views}"/></p>
+        <a th:href="'/news/'+${p.id}+'/edit'" class="btn btn-warning">Edit</a>
+        <a th:href="'/news/'+${p.id}+'/delete'" class="btn btn-warning">Delete</a>
+    </div>
+</div>
+<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>

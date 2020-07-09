@@ -1,0 +1,19 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:text = "${title}"></title>
+</head>
+<body>
+<div>User edition</div>
+<div th:each="u : ${user}">
+    <form th:action="@{/user}" method="post">
+        <input type="text" name="username" th:value="${u.username}">
+        <div th:each="r: ${roles}">
+            <lable><input type="checkbox" th:name="${r}"  th:text="${r}" ></lable>
+        </div>
+        <input type="hidden" name="id" th:value = "${u.id}">
+        <button type="submit">Update</button>
+    </form>
+</div>
+</body>
+</html>

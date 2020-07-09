@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <header >
+        <div th:insert="blocks/header :: header"></div>
+        <div th:insert="blocks/logout :: logout"></div>
+    </header>
+    <div class="container mt-5">
+        <h1>Site blog</h1><br>
+        <form th:action="@{/news}" method="get">
+            <input type="text" name="filter" placeholder="Enter anons" th:value="${filer}?:''" class="form form-control"><br>
+            <button type="submit" class = "btn btn-success">Find</button> <br><br>
+        </form>
+        <div th:each="post : ${posts}" class="alert alert-info mt-2">
+            <h3 th:text="${post.title}"></h3>
+            <p th:text="${post.anons}"></p>
+            <strong th:text="${post.getAuthorName()}"></strong>
+            <a th:href="'/news/'+${post.id}">Details</a>
+        </div>
+    </div>
+    <footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>

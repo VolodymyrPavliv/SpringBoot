@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+</head>
+<body>
+    <div>List of users</div>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th></th>
+            </tr>
+        </thead>
+            <tbody>
+                <div th:each="u : ${users}">
+                    <tr>
+                        <td th:text="${u.username}"></td>
+                        <td th:each="role : ${u.roles}">
+                            <p th:text="${role}" ></p>
+                        </td>
+                        <td><a th:href="'/user/'+${u.id}">Edit</a></td>
+                    </tr>
+                </div>
+            </tbody>
+    </table>
+</body>
+</html>

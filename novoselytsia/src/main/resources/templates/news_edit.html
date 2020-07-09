@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+<header >
+    <div th:insert="blocks/header :: header"></div>
+    <div th:insert="blocks/logout :: logout"></div>
+</header>
+<div class="container mt-5 mb-5">
+    <h1>Edit Post</h1>
+    <div th:each="p : ${post}">
+        <form th:action="@{'/news/'+${p.id}+'/edit'}" method="post">
+            <input type="text" th:value="${p.title}" name="title" placeholder="Enter title" class="form form-control"><br>
+            <input type="text" th:value="${p.anons}" name="anons" placeholder="Enter anons" class="form form-control"><br>
+            <textarea name="full_text" placeholder="Enter text" class="form form-control" th:text="${p.full_text}"/><br>
+            <button type="submit" class="btn btn-success">Update</button>
+        </form>
+    </div>
+</div>
+<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>
